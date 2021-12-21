@@ -4,7 +4,11 @@ register fanatic f
 loves #red hates #green
 post sf
 #red
-Eu gosto de arvores
+fake Eu gosto de arvores
+post sf
+#green
+honest Eu nao gosto de agua
+userposts sf
 addfriend sf
 f
 comment sf
@@ -13,3 +17,5 @@ f
 comment f
 sf
 1 positive nao gosto de red
+readpost sf
+1

@@ -86,6 +86,7 @@ def register_io(fakebook,args):
                 print(INVALID_FANATICISM)
         else:
             print(USER_EXISTS % (userid))
+    
         
 ####
 
@@ -194,9 +195,9 @@ def comment_io(fakebook,args):
     elif not fakebook.has_friend(userComment,userPost):
         print(NO_ACCESS % (userComment, numberOfPost, userPost))
     else:
-        if fakebook.get_user()[userComment]['userkind'] == "selfcentered" and userPost != userComment:
+        if fakebook.get_user()[userComment].userkind == "selfcentered" and userPost != userComment:
             print(NO_COMMENT % (userComment))
-        elif fakebook.get_user()[userComment]['userkind'] == 'fanatic' and not fakebook.comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost):
+        elif fakebook.get_user()[userComment].userkind == 'fanatic' and not fakebook.comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost):
             print(INVALID_STANCE)
         else:
             fakebook.add_comment(positiveNegative,comment,userComment,userPost,numberOfPost)
@@ -219,12 +220,17 @@ def comment_io(fakebook,args):
     print(INVALID_STANCE)"""
 
 def readpost_io(fakebook,args):
-    userid1 = args[0]
+    userid = " ".join(args[0:])
     postid = int(input())
-    if not fakebook.has_user(userid1):
-        print(USER_NOT_EXISTS % (userid1))
+    if not fakebook.has_user(userid):
+        print(USER_NOT_EXISTS % (userid))
     else:
-        print()
+        userpost = fakebook.show_posts(userid,postid)
+        post = "{id}. [{truthfulness}] {message}. [{sizeComments} comments]" \
+            .format(id = userpost['postid'],truthfulness = userpost['truthfulness'],message = userpost['message'],sizeComments = len(userpost['comments']))
+        print(post)
+        print('\n'.join("{} [{}] {}." \
+            .format(comment['userComment'],comment['positiveNegative'],comment['comment']) for comment in userpost['comments']))
     
     """if userid desconhecido
     print(USER_NOT_EXISTS, userid)

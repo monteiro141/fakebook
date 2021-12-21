@@ -25,33 +25,33 @@ class Fakebook:
     
     def register(self,userkind,userid):
         if userkind == "selfcentered":
-            self.user[userid] = Self_centered(userkind,userid).register()
+            self.user[userid] = Self_centered(userkind,userid)
             return True
         elif userkind == "naive":
-            self.user[userid] = naive(userkind,userid).register()
+            self.user[userid] = naive(userkind,userid)
             return True
         elif userkind == "fanatic":
             fanaticUser = fanatic(userkind,userid)
-            if fanaticUser.sequenceOfFanaticisms():
-                self.user[userid] = fanaticUser.register()
+            if fanaticUser.class_sequenceOfFanaticisms():
+                self.user[userid] = fanaticUser
                 return True
-            else:
-                return False
+        return False
     
     def users(self):
-        sorted_user = sorted(self.user.keys())
-        for user in sorted_user:
-            print(self.user[user]['userid']+ " " + "["+self.user[user]['userkind']+ "] " + str(len(self.user[user]['friends']))+ " "+str(len(self.user[user]['posts'])) + " " + str(len(self.user[user]['comments'])))
-    
+        sorted_user = sorted(self.user.items())
+        for key, value in sorted_user:
+            value.class_printUser()
+
+
     def has_friend(self,first_userid,second_userid):
-        return second_userid in self.user[first_userid]['friends']
+        return self.user[first_userid].class_has_friend(second_userid)
     
     def add_friend(self,first_userid,second_userid):
-        self.user[first_userid]['friends'].append(second_userid)
-        self.user[second_userid]['friends'].append(first_userid)
+        self.user[first_userid].class_add_friend(second_userid)
+        self.user[second_userid].class_add_friend(first_userid)
             
     def friends(self,first_userid):
-        return self.user[first_userid]['friends']        
+        return self.user[first_userid].class_friends()
             
     def post_hashtags(self,userid, sequence_of_hashtags):
         for i in range(0,len(sequence_of_hashtags)):
@@ -60,55 +60,23 @@ class Fakebook:
         return True
     
     def post_honest_fake(self,userid,sequence_of_hashtags,truthfulness):
-        if self.user[userid]['userkind'] == "fanatic":
-            if truthfulness == "honest":
-                for i in sequence_of_hashtags:
-                    if i in self.user[userid]['sequence_of_fanaticisms_hate']:
-                        return False
-            if truthfulness == "fake":
-                for i in sequence_of_hashtags:
-                    if i in self.user[userid]['sequence_of_fanaticisms_love']:
-                        return False
-        return True
+        return self.user[userid].class_post_honest_fake(userid,sequence_of_hashtags,truthfulness)
 
     def create_post(self,userid,sequence_of_hashtags,truthfulness,message):
-        sizePosts = len(self.user[userid]['posts']) 
-        newPost = {'postid':sizePosts+1,'truthfulness':truthfulness,'message':message,'sequence_of_hashtags':sequence_of_hashtags,'comments':[]}
-        self.user[userid]['posts'].append(newPost)
+        self.user[userid].class_create_post(userid,sequence_of_hashtags,truthfulness,message)
         
     def number_posts(self,userid):
-        return self.user[userid]['posts']
+        return self.user[userid].class_number_posts()
 
     def comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost):
-        if positiveNegative == 'postive':
-            if self.user[userPost]['posts'][numberOfPost-1]['truthfulness'] == 'honest':
-                for i in self.user[userComment]['sequence_of_fanaticisms_hate']:
-                    word = i[1:]
-                    if word in comment:
-                        return False
-            elif self.user[userPost]['posts'][numberOfPost-1]['truthfulness'] == 'fake':
-                for i in self.user[userComment]['sequence_of_fanaticisms_love']:
-                    word = i[1:]
-                    if word in comment:
-                        return False
-        elif positiveNegative == 'negative':
-            if self.user[userPost]['posts'][numberOfPost-1]['truthfulness'] == 'honest':
-                for i in self.user[userComment]['sequence_of_fanaticisms_love']:
-                    word = i[1:]
-                    if word in comment:
-                        return False
-            elif self.user[userPost]['posts'][numberOfPost-1]['truthfulness'] == 'fake':
-                for i in self.user[userComment]['sequence_of_fanaticisms_hate']:
-                    word = i[1:]
-                    if word in comment:
-                        return False
-        return True
+        return self.user[userComment].class_comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost)
 
     def add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost):
-        newComment =  {'userComment':userComment,'positiveNegative':positiveNegative,'comment':comment}
-        self.user[userPost]['posts'][numberOfPost-1]['comments'].append(newComment)
-        self.user[userComment]['comments'].append(newComment)
+        self.user[userComment].class_add_comment(positiveNegative,comment,userComment,userPost,numberOfPost)
+        self.user[userPost].class_add_comment_to_post(positiveNegative,comment,userComment,userPost,numberOfPost)
     
+    def show_posts(self,userid,postid):
+        return self.user[userid].class_show_posts(postid)
         
         
             
