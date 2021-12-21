@@ -62,3 +62,4 @@ class Self_centered:
         for i in self.posts:
             if i['postid'] == postid:
                 return i
+        return None

@@ -126,4 +126,5 @@ sobre esse topico, so podera fazer comentarios negativos em mensagens honestas e
         for i in self.posts:
             if i['postid'] == postid:
                 return i
+        return None
         
