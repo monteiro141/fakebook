@@ -40,6 +40,7 @@ POSTS = "posts"
 UNKNOWN = "Unknown command. Type help to see available commands."
 BYE = "Bye!"
 USER_REGISTERED = "%s registered."
+INVALID_FANATICISM = "Invalid fanaticism list!"
 USER_EXISTS = "%s already exists!"
 INVALID_KIND = "%s is an invalid user kind!"
 NO_USERS = "There are no users!"
@@ -82,13 +83,15 @@ def register_io(fakebook,args):
         if not fakebook.has_user(userid):
             if fakebook.register(userkind,userid):
                 print(USER_REGISTERED % (userid))
+            else:
+                print(INVALID_FANATICISM)
         else:
             print(USER_EXISTS % (userid))
         
 ####
 
 def users_io(fakebook):
-    if fakebook.get_user() == []:
+    if not fakebook.get_user():
         print (NO_USERS)
     else:
         fakebook.users()

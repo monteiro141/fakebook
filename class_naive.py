@@ -12,7 +12,9 @@ class naive:
     def __init__(self,userkind,userid):
         self.userkind = userkind
         self.userid = userid
-        
+        self.friends = []
+        self.posts = []
+        self.comments = []
         
     def get_userid(self):
         return self.userid
@@ -21,4 +23,4 @@ class naive:
         return self.userid
     
     def register(self):
-        return {"userkind":self.userkind,"userid":self.userid}
+        return {"userid":self.userid,"userkind":self.userkind, "friends": [], "posts": [], "comments" : []}

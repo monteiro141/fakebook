@@ -19,6 +19,10 @@ sobre esse topico, so podera fazer comentarios negativos em mensagens honestas e
         self.userid = userid
         self.sequence_of_fanaticisms_love = []
         self.sequence_of_fanaticisms_hate = []
+        self.friends = []
+        self.posts = []
+        self.comments = []
+
     
     def get_userkind(self):
         return self.userkind
@@ -56,4 +60,4 @@ sobre esse topico, so podera fazer comentarios negativos em mensagens honestas e
         return True
 
     def register(self):
-        return {"userkind":self.userkind,"userid":self.userid,"loves":self.sequence_of_fanaticisms_love,"hates":self.sequence_of_fanaticisms_hate}
+        return {"userid":self.userid,"userkind":self.userkind,"friends": [], "posts": [], "comments" : [],"loves":self.sequence_of_fanaticisms_love,"hates":self.sequence_of_fanaticisms_hate}

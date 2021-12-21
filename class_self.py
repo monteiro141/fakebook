@@ -13,6 +13,9 @@ class Self_centered:
     def __init__(self,userkind,userid):
         self.userkind = userkind
         self.userid = userid
+        self.friends = []
+        self.posts = []
+        self.comments = []
         
     def get_userkind(self):
         return self.userkind
@@ -21,4 +24,4 @@ class Self_centered:
         return self.userid
     
     def register(self):
-        return {"userkind":self.userkind,"userid":self.userid}
+        return {"userid":self.userid,"userkind":self.userkind, "friends": [], "posts": [], "comments" : []}

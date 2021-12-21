@@ -11,8 +11,6 @@ from class_naive import naive
 class Fakebook:
     def __init__(self):
         self.user = {}
-        self.friends1 = []
-        self.friends2 = []
     
     def get_user(self):
         return self.user
@@ -38,19 +36,12 @@ class Fakebook:
                 self.user[userid] = fanaticUser.register()
                 return True
             else:
-                print("Invalid fanaticism list!")
                 return False
-                
-    def lista_users(self):
-        users_registados = []
-        sorted_user = sorted(self.user.keys())
-        for user in sorted_user:
-            users_registados.append(self.user)
-        return users_registados
     
     def users(self):
-        #for i in lista_users():
-            pass
+        sorted_user = sorted(self.user.keys())
+        for user in sorted_user:
+            print(self.user[user]['userid']+ " " + "["+self.user[user]['userkind']+ "] " + str(len(self.user[user]['friends']))+ " "+str(len(self.user[user]['posts'])) + " " + str(len(self.user[user]['comments'])))
     
     def has_friend(self,first_userid,second_userid):
         first_userid in self.friends1 and second_userid in self.friends2
