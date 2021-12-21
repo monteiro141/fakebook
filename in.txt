@@ -1,0 +1,15 @@
+register selfcentered sf
+register naive n
+register fanatic f
+loves #red hates #green
+post sf
+#red
+Eu gosto de arvores
+addfriend sf
+f
+comment sf
+f
+1 positive nao gosto de red
+comment f
+sf
+1 positive nao gosto de red

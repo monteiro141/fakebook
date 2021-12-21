@@ -44,23 +44,71 @@ class Fakebook:
             print(self.user[user]['userid']+ " " + "["+self.user[user]['userkind']+ "] " + str(len(self.user[user]['friends']))+ " "+str(len(self.user[user]['posts'])) + " " + str(len(self.user[user]['comments'])))
     
     def has_friend(self,first_userid,second_userid):
-        first_userid in self.friends1 and second_userid in self.friends2
+        return second_userid in self.user[first_userid]['friends']
     
     def add_friend(self,first_userid,second_userid):
-        #self.friends[friend.get_userid()] = friend
-        if not self.has_friend(first_userid,second_userid):
-            self.friends1.append(second_userid)
-            self.friends2.append(first_userid)
+        self.user[first_userid]['friends'].append(second_userid)
+        self.user[second_userid]['friends'].append(first_userid)
             
+    def friends(self,first_userid):
+        return self.user[first_userid]['friends']        
             
-    def friendsprint (self):
-        return self.friends1
-            
-    def post(self,userid,sequence_of_hashtags,truthfulness,message):
-        sequence_of_hashtags = []
+    def post_hashtags(self,userid, sequence_of_hashtags):
+        for i in range(0,len(sequence_of_hashtags)):
+            if sequence_of_hashtags[i] in sequence_of_hashtags[i+1:]:
+                return False
+        return True
+    
+    def post_honest_fake(self,userid,sequence_of_hashtags,truthfulness):
+        if self.user[userid]['userkind'] == "fanatic":
+            if truthfulness == "honest":
+                for i in sequence_of_hashtags:
+                    if i in self.user[userid]['sequence_of_fanaticisms_hate']:
+                        return False
+            if truthfulness == "fake":
+                for i in sequence_of_hashtags:
+                    if i in self.user[userid]['sequence_of_fanaticisms_love']:
+                        return False
+        return True
+
+    def create_post(self,userid,sequence_of_hashtags,truthfulness,message):
+        sizePosts = len(self.user[userid]['posts']) 
+        newPost = {'postid':sizePosts+1,'truthfulness':truthfulness,'message':message,'sequence_of_hashtags':sequence_of_hashtags,'comments':[]}
+        self.user[userid]['posts'].append(newPost)
         
-    def userposts(self):
-        lista = []
+    def number_posts(self,userid):
+        return self.user[userid]['posts']
+
+    def comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost):
+        if positiveNegative == 'postive':
+            if self.user[userPost]['posts'][numberOfPost-1]['truthfulness'] == 'honest':
+                for i in self.user[userComment]['sequence_of_fanaticisms_hate']:
+                    word = i[1:]
+                    if word in comment:
+                        return False
+            elif self.user[userPost]['posts'][numberOfPost-1]['truthfulness'] == 'fake':
+                for i in self.user[userComment]['sequence_of_fanaticisms_love']:
+                    word = i[1:]
+                    if word in comment:
+                        return False
+        elif positiveNegative == 'negative':
+            if self.user[userPost]['posts'][numberOfPost-1]['truthfulness'] == 'honest':
+                for i in self.user[userComment]['sequence_of_fanaticisms_love']:
+                    word = i[1:]
+                    if word in comment:
+                        return False
+            elif self.user[userPost]['posts'][numberOfPost-1]['truthfulness'] == 'fake':
+                for i in self.user[userComment]['sequence_of_fanaticisms_hate']:
+                    word = i[1:]
+                    if word in comment:
+                        return False
+        return True
+
+    def add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost):
+        newComment =  {'userComment':userComment,'positiveNegative':positiveNegative,'comment':comment}
+        self.user[userPost]['posts'][numberOfPost-1]['comments'].append(newComment)
+        self.user[userComment]['comments'].append(newComment)
+    
         
         
             
