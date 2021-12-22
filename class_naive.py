@@ -45,10 +45,7 @@ class naive:
     def class_number_posts(self):
         return self.posts
 
-    def class_comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost, fanatic, sequence_of_hashtags):
-        return True
-
-    def class_comment_fanaticism_hashtags(self,positiveNegative,comment,userComment, numberOfPost, userPost, sequence_of_hashtags):
+    def class_comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost, fanatic, sequence_of_hashtags,post):
         return True
 
     def class_add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost):

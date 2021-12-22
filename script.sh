@@ -25,7 +25,6 @@ diff oo10 Fakebook-Tests-20-Dez/fakebook10out.txt > dif10
 
 for i in {0..10}
 do
-    echo "dif$i"
     if [ -s dif$i ]; then 
     echo "dif$i"
     else

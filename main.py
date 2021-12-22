@@ -230,10 +230,10 @@ def readpost_io(fakebook,args):
         if userpost == None:
             print(NO_POST % (userid, postid))
         else:
-            post = "{id}. [{truthfulness}] {message}. [{sizeComments} comments]" \
-                .format(id = userpost['postid'],truthfulness = userpost['truthfulness'],message = userpost['message'],sizeComments = len(userpost['comments']))
+            post = "[{id} {truthfulness}] {message}" \
+                .format(id = userid,truthfulness = userpost['truthfulness'],message = userpost['message'])
             print(post)
-            print('\n'.join("{} [{}] {}." \
+            print('\n'.join("[{} {}] {}" \
                 .format(comment['userComment'],comment['positiveNegative'],comment['comment']) for comment in userpost['comments']))
     
     """if userid desconhecido

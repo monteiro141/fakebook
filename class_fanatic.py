@@ -89,41 +89,28 @@ sobre esse topico, so podera fazer comentarios negativos em mensagens honestas e
     def class_number_posts(self):
         return self.posts
 
-    def class_comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost, fanatic, sequence_of_hashtags):
+    def class_comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost, fanatic, sequence_of_hashtags,post):
         if fanatic == 'honest':
             if positiveNegative == 'positive':
-                 for i in self.sequence_of_fanaticisms_hate:
+                for i in self.sequence_of_fanaticisms_love:
                     if i in sequence_of_hashtags:
-                        return False
+                        return True
+                    
             elif positiveNegative == 'negative':
                 for i in self.sequence_of_fanaticisms_love:
                     if i in sequence_of_hashtags:
-                        return False
+                        return True
         elif fanatic == 'fake':
             if positiveNegative == 'positive':
-                for i in self.sequence_of_fanaticisms_love:
-                    if i in sequence_of_hashtags:
-                        return False
-            elif positiveNegative == 'negative':
                 for i in self.sequence_of_fanaticisms_hate:
                     if i in sequence_of_hashtags:
-                        return False
-        return True
+                        return True
+            elif positiveNegative == 'negative':
+                for i in self.sequence_of_fanaticisms_love:
+                    if i in sequence_of_hashtags:
+                        return True
+        return False
 
-    def class_comment_fanaticism_hashtags(self,positiveNegative,comment,userComment, numberOfPost, userPost, sequence_of_hashtags):
-        love_hate = False
-        '''for i in sequence_of_hashtags:
-            if i in self.sequence_of_fanaticisms_love: 
-                if love_hate:
-                    return False
-                else:
-                    love_hate=True
-            elif i in self.sequence_of_fanaticisms_hate:
-                if love_hate:
-                    return False
-                else:
-                    love_hate=True'''
-        return True
             
 
     def class_add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost):
