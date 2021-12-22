@@ -90,26 +90,30 @@ sobre esse topico, so podera fazer comentarios negativos em mensagens honestas e
         return self.posts
 
     def class_comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost, fanatic, sequence_of_hashtags,post):
-        if fanatic == 'honest':
-            if positiveNegative == 'positive':
-                for i in self.sequence_of_fanaticisms_love:
-                    if i in sequence_of_hashtags:
+        for hashtag in sequence_of_hashtags:
+            if fanatic == 'honest':
+                if positiveNegative == 'positive':
+                    if hashtag in self.sequence_of_fanaticisms_love:
                         return True
-                    
-            elif positiveNegative == 'negative':
-                for i in self.sequence_of_fanaticisms_love:
-                    if i in sequence_of_hashtags:
+                    elif hashtag in self.sequence_of_fanaticisms_hate:
+                        return False   
+                elif positiveNegative == 'negative':
+                    if hashtag in  self.sequence_of_fanaticisms_love:
+                        return False
+                    elif hashtag in self.sequence_of_fanaticisms_hate:
                         return True
-        elif fanatic == 'fake':
-            if positiveNegative == 'positive':
-                for i in self.sequence_of_fanaticisms_hate:
-                    if i in sequence_of_hashtags:
+            elif fanatic == 'fake':
+                if positiveNegative == 'positive':
+                    if hashtag in self.sequence_of_fanaticisms_love:
+                        return False
+                    elif hashtag in self.sequence_of_fanaticisms_hate:
                         return True
-            elif positiveNegative == 'negative':
-                for i in self.sequence_of_fanaticisms_love:
-                    if i in sequence_of_hashtags:
+                elif positiveNegative == 'negative':
+                    if hashtag in self.sequence_of_fanaticisms_love:
                         return True
-        return False
+                    elif hashtag in self.sequence_of_fanaticisms_hate:
+                        return False
+        return True
 
             
 
