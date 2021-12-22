@@ -1,0 +1,16 @@
+register naive Forrest Gump
+users
+register fanatic Pete
+loves #red hates #blue hates #green
+register selfcentered Dim Cardashian
+users
+register naive Pam
+register naive Pat
+register naive Pip
+register naive Anthony
+register fanatic Charles Dalbert
+loves #green hates #red
+register fanatic Francis Smaug
+hates #red
+users
+exit

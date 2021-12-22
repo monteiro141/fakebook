@@ -69,7 +69,9 @@ class Fakebook:
         return self.user[userid].class_number_posts()
 
     def comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost):
-        return self.user[userComment].class_comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost)
+        fanatic = self.user[userPost].posts[numberOfPost-1]['truthfulness']
+        sequence_of_hashtags = self.user[userPost].posts[numberOfPost-1]['sequence_of_hashtags']
+        return self.user[userComment].class_comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost, fanatic,sequence_of_hashtags) and self.user[userComment].class_comment_fanaticism_hashtags(positiveNegative,comment,userComment, numberOfPost, userPost, sequence_of_hashtags)
 
     def add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost):
         self.user[userComment].class_add_comment(positiveNegative,comment,userComment,userPost,numberOfPost)

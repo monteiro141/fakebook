@@ -174,7 +174,8 @@ def userposts_io(fakebook,args):
         if posts == []:
             print(NO_POSTS % (userid))
         else:
-            print('\n'.join("{}. [{}] {}. [{} comments]".format(post['postid'],post['truthfulness'],post['message'],len(post['comments'])) for post in posts))
+            print(userid + " posts:")
+            print('\n'.join("{}. [{}] {} [{} comments]".format(post['postid'],post['truthfulness'],post['message'],len(post['comments'])) for post in posts))
     """if userid no posts print(NO_POSTS, userid)"""
     
 def comment_io(fakebook,args):
@@ -192,7 +193,7 @@ def comment_io(fakebook,args):
         print(USER_NOT_EXISTS % (userPost))
     elif numberOfPost > len(fakebook.number_posts(userPost)):
         print(NO_POST %  (userPost, numberOfPost))
-    elif not fakebook.has_friend(userComment,userPost):
+    elif not fakebook.has_friend(userComment,userPost) and userPost != userComment:
         print(NO_ACCESS % (userComment, numberOfPost, userPost))
     else:
         if fakebook.get_user()[userComment].userkind == "selfcentered" and userPost != userComment:

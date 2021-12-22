@@ -1,0 +1,28 @@
+users
+register honest Abe
+register naive Forrest Gump
+register goodold Forrest Gump
+register selfcentered Forrest Gump
+register fanatic Pygmy
+hates #cat hates #you loves #cat
+register fanatic Jane Fonda
+loves #fitness loves #morefitness loves #morefitness loves #nothinglikefitness
+register fanatic Mafalda
+hates #soup hates #soup hates #soup
+users
+register fanatic Pete
+loves #red hates #blue hates #green
+register selfcentered Dim Cardashian
+register beautiful bobby
+register sweet stan
+users
+register naive Pam
+register naive Pat
+register naive Pip
+register naive Anthony
+register fanatic Charles Dalbert
+loves #green hates #red
+register fanatic Francis Smaug
+hates #red
+users
+exit

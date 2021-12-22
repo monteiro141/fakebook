@@ -19,3 +19,31 @@ sf
 1 positive nao gosto de red
 readpost sf
 1
+
+register selfcentered Dim Cardashian
+register fanatic Pete
+loves #red hates #blue hates #green
+
+post Dim Cardashian
+#AwesomeDim #red #blue #whatever
+honest Well, a bear can juggle while standing on a ball and he is talented, but he is not famous. You understand what I am saying?
+
+comment Pete
+Dim Cardashian
+3 positive Yeah, you should never see a bear on the RED carpet! LOL!
+
+------
+
+
+register selfcentered Dim Cardashian
+register fanatic Pete
+loves #red hates #blue hates #green
+
+post Dim Cardashian
+#AwesomeDim #red #blue #whatever
+honest Well, a bear can juggle while standing on a ball and he is talented, but he is not famous. You understand what I am saying?
+
+comment Pete
+Dim Cardashian
+3 negative What about Winnie the Poo, you mindless socialite? And why are you wearing that hideous BLUE dress?
+

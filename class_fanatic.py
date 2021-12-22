@@ -73,11 +73,11 @@ sobre esse topico, so podera fazer comentarios negativos em mensagens honestas e
     def class_post_honest_fake(self,userid,sequence_of_hashtags,truthfulness):
         if truthfulness == "honest":
             for i in sequence_of_hashtags:
-                if i in self.user[userid]['sequence_of_fanaticisms_hate']:
+                if i in self.sequence_of_fanaticisms_hate:
                     return False
         if truthfulness == "fake":
             for i in sequence_of_hashtags:
-                if i in self.user[userid]['sequence_of_fanaticisms_love']:
+                if i in self.sequence_of_fanaticisms_love:
                     return False
         return True
 
@@ -89,30 +89,42 @@ sobre esse topico, so podera fazer comentarios negativos em mensagens honestas e
     def class_number_posts(self):
         return self.posts
 
-    def class_comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost):
-        if positiveNegative == 'postive':
-            if self.posts[numberOfPost-1]['truthfulness'] == 'honest':
-                for i in self.sequence_of_fanaticisms_hate:
-                    word = i[1:]
-                    if word in comment:
+    def class_comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost, fanatic, sequence_of_hashtags):
+        if fanatic == 'honest':
+            if positiveNegative == 'positive':
+                 for i in self.sequence_of_fanaticisms_hate:
+                    if i in sequence_of_hashtags:
                         return False
-            elif self.posts[numberOfPost-1]['truthfulness'] == 'fake':
+            elif positiveNegative == 'negative':
                 for i in self.sequence_of_fanaticisms_love:
-                    word = i[1:]
-                    if word in comment:
+                    if i in sequence_of_hashtags:
                         return False
-        elif positiveNegative == 'negative':
-            if self.posts[numberOfPost-1]['truthfulness'] == 'honest':
+        elif fanatic == 'fake':
+            if positiveNegative == 'positive':
                 for i in self.sequence_of_fanaticisms_love:
-                    word = i[1:]
-                    if word in comment:
+                    if i in sequence_of_hashtags:
                         return False
-            elif self.posts[numberOfPost-1]['truthfulness'] == 'fake':
+            elif positiveNegative == 'negative':
                 for i in self.sequence_of_fanaticisms_hate:
-                    word = i[1:]
-                    if word in comment:
+                    if i in sequence_of_hashtags:
                         return False
         return True
+
+    def class_comment_fanaticism_hashtags(self,positiveNegative,comment,userComment, numberOfPost, userPost, sequence_of_hashtags):
+        love_hate = False
+        '''for i in sequence_of_hashtags:
+            if i in self.sequence_of_fanaticisms_love: 
+                if love_hate:
+                    return False
+                else:
+                    love_hate=True
+            elif i in self.sequence_of_fanaticisms_hate:
+                if love_hate:
+                    return False
+                else:
+                    love_hate=True'''
+        return True
+            
 
     def class_add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost):
         newComment =  {'userComment':userComment,'positiveNegative':positiveNegative,'comment':comment}

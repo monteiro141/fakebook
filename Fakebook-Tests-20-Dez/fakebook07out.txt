@@ -1,0 +1,64 @@
+Forrest Gump registered.
+Forrest Gump [naive] 0 0 0
+Pete registered.
+Dim Cardashian registered.
+Dim Cardashian [selfcentered] 0 0 0
+Forrest Gump [naive] 0 0 0
+Pete [fanatic] 0 0 0
+Pam registered.
+Pat registered.
+Pip registered.
+Anthony registered.
+Charles Dalbert registered.
+Francis Smaug registered.
+6-year old kid registered.
+6-year old kid [fanatic] 0 0 0
+Anthony [naive] 0 0 0
+Charles Dalbert [fanatic] 0 0 0
+Dim Cardashian [selfcentered] 0 0 0
+Forrest Gump [naive] 0 0 0
+Francis Smaug [fanatic] 0 0 0
+Pam [naive] 0 0 0
+Pat [naive] 0 0 0
+Pete [fanatic] 0 0 0
+Pip [naive] 0 0 0
+Forrest Gump is friend of Dim Cardashian.
+Pete is friend of Dim Cardashian.
+Anthony is friend of Pete.
+Anthony is friend of Forrest Gump.
+6-year old kid is friend of Anthony.
+6-year old kid [fanatic] 1 0 0
+Anthony [naive] 3 0 0
+Charles Dalbert [fanatic] 0 0 0
+Dim Cardashian [selfcentered] 2 0 0
+Forrest Gump [naive] 2 0 0
+Francis Smaug [fanatic] 0 0 0
+Pam [naive] 0 0 0
+Pat [naive] 0 0 0
+Pete [fanatic] 2 0 0
+Pip [naive] 0 0 0
+Pip has no friends!
+Pam has no friends!
+Pat has no friends!
+Forrest Gump, Pete.
+Rainbow Unicorn does not exist!
+Invalid hashtags list!
+Invalid hashtags list!
+Inadequate stance!
+Inadequate stance!
+6-year old kid [fanatic] 1 0 0
+Anthony [naive] 3 0 0
+Charles Dalbert [fanatic] 0 0 0
+Dim Cardashian [selfcentered] 2 0 0
+Forrest Gump [naive] 2 0 0
+Francis Smaug [fanatic] 0 0 0
+Pam [naive] 0 0 0
+Pat [naive] 0 0 0
+Pete [fanatic] 2 0 0
+Pip [naive] 0 0 0
+Rainbow Unicorn does not exist!
+Santa Claus does not exist!
+Dim Cardashian has no posts!
+Anthony has no posts!
+Pete has no posts!
+Bye!
