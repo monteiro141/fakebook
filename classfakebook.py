@@ -13,10 +13,17 @@ class Fakebook:
         self.user = {}
     
     def get_user(self):
+        '''
+        get_user: -> dict[object]
+        Devolve um dicionario com varios objectos das classes self, naive e/ou fanatic
+        '''
         return self.user
 
     def has_user(self,userid):
-        #return userid in self.user
+        '''
+        has_user: String -> Boolean
+        Devolve true, caso exista o user no dicionario de objectos e falso caso contrário
+        '''
         if userid not in self.user.keys():
             return False
         else:
