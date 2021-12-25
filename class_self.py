@@ -2,13 +2,10 @@
 """
 Created on Fri Dec 10 21:37:48 2021
 
-@author: User
+@author: 61682_62503_62519
 """
 
 class Self_centered:
-    """podem publicar mensagens honestas e falsas. 
-    Porque sao egocentricos, apenas escrevem comentarios positivos nas suas proprias mensagens, e nunca comentam as mensagens 
-    de outros utilizadores. """
     
     def __init__(self,userkind,userid):
         self.userkind = userkind

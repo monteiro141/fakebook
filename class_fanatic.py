@@ -2,18 +2,11 @@
 """
 Created on Fri Dec 10 21:39:08 2021
 
-@author: User
+@author: 61682_62503_62519
 """
 
 class fanatic:
-    """tem uma lista de topicos sobre os quais sao fanáticos e so podem fazer posts e comentar
-mensagens sobre assuntos sobre os quais sao fanaticos. Estes topicos sao definidos atraves
-de hashtags (e.g., 7flatearth, 7cutecat, ...). Um fanatico tem sempre uma posicao em
-relacao aos temas(s) sobre os quais e fanatico. Se o fanatico tem uma opiniao positiva sobre
-um topico(s), so pode fazer comentarios positivos sobre o mesmo, se o post for honesto, ou
-comentarios negativos, se o post for falso. Inversamente, se o fanatico tiver uma posicao negativa
-sobre esse topico, so podera fazer comentarios negativos em mensagens honestas e comentarios positivos em mensagens falsas.
-"""
+    
     def __init__(self,userkind,userid):
         self.userkind = userkind
         self.userid = userid

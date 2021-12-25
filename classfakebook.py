@@ -2,7 +2,7 @@
 """
 Created on Thu Dec  9 16:37:47 2021
 
-@author: User
+@author: 61682_62503_62519
 """
 from class_fanatic import fanatic
 from class_self import Self_centered

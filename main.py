@@ -70,6 +70,7 @@ def next_command():
     return command, args
 
 def help_io():
+    #Shows the available commands
     print(HELP_MSG)
 
 
@@ -87,18 +88,12 @@ def register_io(fakebook,args):
         else:
             print(USER_EXISTS % (userid))
     
-        
-####
 
 def users_io(fakebook):
     if not fakebook.get_user():
         print (NO_USERS)
     else:
         fakebook.users()
-            
-    
-    """sorted()
-    print (userid, "[",userkind,"]", friendscount, postscount, commentscount)"""
    
 def addfriend_io(fakebook,args):
     first_userid = " ".join(args[0:])
@@ -118,8 +113,6 @@ def addfriend_io(fakebook,args):
             fakebook.add_friend(first_userid,second_userid)
             print(IS_FRIEND % (first_userid, second_userid))
 
-
-
 def friends_io(fakebook,args):
     userid = " ".join(args[0:])
     if fakebook.has_user(userid):
@@ -130,16 +123,7 @@ def friends_io(fakebook,args):
             print(*friends, sep = ", ", end=".\n")
     else:
         print(USER_NOT_EXISTS % (userid))
-    
-''' 
-PETE loves #red hates #green
-post PETE
-#red
-honest
 
-if hates X cant honest X
-if loves Y cant fake Y
-'''
 def post_io(fakebook,args):
     userid = " ".join(args[0:])
     sequence_of_hashtags = input().split(" ")
@@ -156,14 +140,6 @@ def post_io(fakebook,args):
     else:
         fakebook.create_post(userid,sequence_of_hashtags,truthfulness,message)
         print(MESSAGE % (userid, truthfulness, len(fakebook.friends(userid)), len(fakebook.number_posts(userid))))
-
-    """id userid desconhecido
-    print(USER_NOT_EXISTS, userid)
-    if list de hastags vazia ou alguma hastag repetida
-    print(INVALID_HASHTAG)
-    ..
-    print(INADEQUATE_STANCE)"""
-    pass
     
 def userposts_io(fakebook,args):
     userid = " ".join(args[0:])
@@ -176,7 +152,6 @@ def userposts_io(fakebook,args):
         else:
             print(userid + " posts:")
             print('\n'.join("{}. [{}] {} [{} comments]".format(post['postid'],post['truthfulness'],post['message'],len(post['comments'])) for post in posts))
-    """if userid no posts print(NO_POSTS, userid)"""
     
 def comment_io(fakebook,args):
     userComment = " ".join(args[0:])
@@ -196,29 +171,15 @@ def comment_io(fakebook,args):
     elif not fakebook.has_friend(userComment,userPost) and userPost != userComment:
         print(NO_ACCESS % (userComment, numberOfPost, userPost))
     else:
-        if fakebook.get_user()[userComment].userkind == "selfcentered" and userPost != userComment:
+        if fakebook.get_user()[userComment].userkind == SELF_CENTERED and userPost != userComment:
             print(NO_COMMENT % (userComment))
-        elif fakebook.get_user()[userComment].userkind == 'fanatic' and not fakebook.comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost):
+        elif fakebook.get_user()[userComment].userkind == FANATICS and not fakebook.comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost):
             print(INVALID_STANCE)
         else:
             fakebook.add_comment(positiveNegative,comment,userComment,userPost,numberOfPost)
             print(COMMENT_ADDED)
 
 
-
-    
-    """if userid1 or userid2 desconhecido
-    print(USER_NOT_EXISTS, userid)
-    if nenhum existir
-    print (USER_NOT_EXISTS, userid1)
-    if id nao existe para esse autor
-    print(NO_POST, userid, commentid)
-    if userid1 not friend userid2
-    print(NO_ACCESS, userid1, commentid userid2)
-    if userid1 tiver acesso à postagem, mas não tiver permissão para comentar nela (por exemplo, porque ele é egocêntrico)
-    print(NO_COMMENT, userid1)
-    if stance invalido para userid
-    print(INVALID_STANCE)"""
 
 def readpost_io(fakebook,args):
     userid = " ".join(args[0:])
@@ -236,34 +197,28 @@ def readpost_io(fakebook,args):
             print('\n'.join("[{} {}] {}" \
                 .format(comment['userComment'],comment['positiveNegative'],comment['comment']) for comment in userpost['comments']))
     
-    """if userid desconhecido
-    print(USER_NOT_EXISTS, userid)
-     If userid has no message with the given id 
-     print(NO_POST, userid, id)
-     if no comments
-     print(NO_COMMENTS,message)"""
      
 def commentsbyuser_io(fakebook,args):
-    userid = args[0]
-    #topicid
+    userid = " ".join(args[0:])
+    topic_id = input()
     if not fakebook.has_user(userid):
         print(USER_NOT_EXISTS % (userid))
-    """if userid desconhecido
-    print(USER_NOT_EXISTS,userid)
+    else:
+        print()
+    """
     if userid nao fez comments
     print("No comments!")
     """
-    pass
     
 def topicfanatics_io(fakebook,args):
     #sorted()
-    fanatism_id = args[0]
+    fanatism_id = " ".join(args[0:])
     """if fanatismid desconhecido
     print(NO_FANATICISM, fanatismid)"""
     pass
     
 def topicposts_io(fakebook,args):
-    topic_id = args[0]
+    topic_id = " ".join(args[0:])
     """if topicid desconhecido
     print (NO_TOPIC, topicid)"""
     pass
