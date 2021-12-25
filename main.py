@@ -34,9 +34,9 @@ POST = "post"
 USERPOSTS = "userposts"
 COMMENT = "comment"
 READPOST = "readpost"
-BYUSER = "byuser"
+BYUSER = "commentsbyuser"
 TOPICFANATICS = "topicfanatics"
-POSTS = "posts"
+POSTS = "topicposts"
 UNKNOWN = "Unknown command. Type help to see available commands."
 BYE = "Bye!"
 USER_REGISTERED = "%s registered."
@@ -57,9 +57,10 @@ NO_POST = "%s has no post %s!"
 NO_ACCESS = "%s has no access to post %s by %s!"
 NO_COMMENT = "%s cannot comment on this post!"
 INVALID_STANCE = "Invalid comment stance!"
-NO_COMMENTS = "%s\nNo comments!"
-NO_FANATICISM = "Oh please, who would be a fanatic of %s"
-NO_TOPIC = "Oh please, who would write about %s"
+NO_COMMENTS = "No comments!"
+
+NO_FANATICISM = "Oh please, who would be a fanatic of %s?"
+NO_TOPIC = "Oh please, who would write about %s?"
 MESSAGE = "%s sent a %s post to %s friends. Post id = %s."
 COMMENT_ADDED = "Comment added!"
 
@@ -178,7 +179,8 @@ def comment_io(fakebook,args):
         elif fakebook.get_user()[userComment].userkind == FANATICS and not fakebook.comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost):
             print(INVALID_STANCE)
         else:
-            fakebook.add_comment(positiveNegative,comment,userComment,userPost,numberOfPost)
+            sequence_of_hashtags = fakebook.get_user()[userPost].posts[numberOfPost-1]['sequence_of_hashtags']
+            fakebook.add_comment(positiveNegative,comment,userComment,userPost,numberOfPost,sequence_of_hashtags)
             print(COMMENT_ADDED)
 
 
@@ -194,11 +196,13 @@ def readpost_io(fakebook,args):
             print(NO_POST % (userid, postid))
         else:
             post = "[{id} {truthfulness}] {message}" \
-                .format(id = userid,truthfulness = userpost['truthfulness'],message = userpost['message'])
+                    .format(id = userid,truthfulness = userpost['truthfulness'],message = userpost['message'])
             print(post)
-            print('\n'.join("[{} {}] {}" \
-                .format(comment['userComment'],comment['positiveNegative'],comment['comment']) for comment in userpost['comments']))
-    
+            if userpost['comments'] == []:
+                print(NO_COMMENTS)
+            else:
+                print('\n'.join("[{} {}] {}" \
+                    .format(comment['userComment'],comment['positiveNegative'],comment['comment']) for comment in userpost['comments']))
     
      
 def commentsbyuser_io(fakebook,args):
@@ -207,7 +211,12 @@ def commentsbyuser_io(fakebook,args):
     if not fakebook.has_user(userid):
         print(USER_NOT_EXISTS % (userid))
     else:
-        print()
+        comments = fakebook.show_comments(userid,topic_id)
+        if comments == []:
+            print(NO_COMMENTS)
+        else:
+            print('\n'.join("[{} {} {} {}] {}" \
+                .format(comment['userPost'],fakebook.show_posts(comment['userPost'],comment['numberOfPost'])['truthfulness'],comment['numberOfPost'],comment['positiveNegative'], comment['comment']) for comment in comments))
     """
     if userid nao fez comments
     print("No comments!")
@@ -215,15 +224,29 @@ def commentsbyuser_io(fakebook,args):
     
 def topicfanatics_io(fakebook,args):
     #sorted()
-    fanatism_id = " ".join(args[0:])
+    fanatism_id = " ".join(args[0:])    
+    fanatics = sorted(fakebook.topic_fanatics(fanatism_id))
+    if fanatics == []:
+        print(NO_FANATICISM % (fanatism_id))
+    else:
+        print(*fanatics, sep = ", ", end=".\n")
     """if fanatismid desconhecido
     print(NO_FANATICISM, fanatismid)"""
     pass
     
 def topicposts_io(fakebook,args):
     topic_id = " ".join(args[0:])
+    posts = fakebook.topic_posts(topic_id)
+    if posts == []:
+        print (NO_TOPIC % (topic_id))
+    else:   
+        print('\n'.join("{} {} {}: {}" \
+                .format(post['userid'],post['postid'],len(post['comments']),post['message']) for post in posts))
+    
     """if topicid desconhecido
-    print (NO_TOPIC, topicid)"""
+    print (NO_TOPIC, topicid)
+    userpost postid numberOfComments: postmessage
+    """
     pass
 
     

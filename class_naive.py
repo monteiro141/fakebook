@@ -37,7 +37,7 @@ class naive:
     
     def class_create_post(self,userid,sequence_of_hashtags,truthfulness,message):
         sizePosts = len(self.posts) 
-        newPost = {'postid':sizePosts+1,'truthfulness':truthfulness,'message':message,'sequence_of_hashtags':sequence_of_hashtags,'comments':[]}
+        newPost = {'postid':sizePosts+1,'userid':userid,'truthfulness':truthfulness,'message':message,'sequence_of_hashtags':sequence_of_hashtags,'comments':[]}
         self.posts.append(newPost)
 
     def class_number_posts(self):
@@ -46,12 +46,12 @@ class naive:
     def class_comment_fanaticism(self,positiveNegative,comment,userComment, numberOfPost, userPost, fanatic, sequence_of_hashtags,post):
         return True
 
-    def class_add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost):
-        newComment =  {'userComment':userComment,'positiveNegative':positiveNegative,'comment':comment}
+    def class_add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost,sequence_of_hashtags):
+        newComment =  {'userComment':userComment,'userPost':userPost,'numberOfPost':numberOfPost ,'positiveNegative':positiveNegative,'sequence_of_hashtags':sequence_of_hashtags,'comment':comment}
         self.comments.append(newComment)
 
-    def class_add_comment_to_post(self,positiveNegative,comment,userComment,userPost,numberOfPost):
-        newComment =  {'userComment':userComment,'positiveNegative':positiveNegative,'comment':comment}
+    def class_add_comment_to_post(self,positiveNegative,comment,userComment,userPost,numberOfPost,sequence_of_hashtags):
+        newComment =  {'userComment':userComment,'userPost':userPost,'numberOfPost':numberOfPost ,'positiveNegative':positiveNegative,'sequence_of_hashtags':sequence_of_hashtags,'comment':comment}
         self.posts[numberOfPost-1]['comments'].append(newComment)
 
     def class_show_posts(self,postid):
@@ -59,3 +59,17 @@ class naive:
             if i['postid'] == postid:
                 return i
         return None
+
+    def class_show_comments(self,topic_id):
+        comments = []
+        for comment in self.comments:
+            if topic_id in comment['sequence_of_hashtags']:
+                comments.append(comment)
+        return comments
+    
+    def class_topic_posts(self,topic_id):
+        listPosts = []
+        for post in self.posts:
+            if topic_id in post['sequence_of_hashtags']:
+                listPosts.append(post)
+        return listPosts

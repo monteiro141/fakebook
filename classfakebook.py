@@ -73,13 +73,33 @@ class Fakebook:
         sequence_of_hashtags = self.user[userPost].posts[numberOfPost-1]['sequence_of_hashtags']
         return self.user[userComment].class_comment_fanaticism(positiveNegative,comment,userComment, numberOfPost, userPost, fanatic,sequence_of_hashtags,self.user[userPost].posts[numberOfPost-1])
 
-    def add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost):
-        self.user[userComment].class_add_comment(positiveNegative,comment,userComment,userPost,numberOfPost)
-        self.user[userPost].class_add_comment_to_post(positiveNegative,comment,userComment,userPost,numberOfPost)
+    def add_comment(self,positiveNegative,comment,userComment,userPost,numberOfPost,sequence_of_hashtags):
+        self.user[userComment].class_add_comment(positiveNegative,comment,userComment,userPost,numberOfPost,sequence_of_hashtags)
+        self.user[userPost].class_add_comment_to_post(positiveNegative,comment,userComment,userPost,numberOfPost,sequence_of_hashtags)
     
     def show_posts(self,userid,postid):
         return self.user[userid].class_show_posts(postid)
         
+    def show_comments(self,userid,topic_id):
+        return self.user[userid].class_show_comments(topic_id)
+
+    def topic_fanatics(self,fanaticism):
+        listFanatics = []
+        for userid in self.user:
+            if self.user[userid].userkind == "fanatic" and (fanaticism in self.user[userid].sequence_of_fanaticisms_love or fanaticism in self.user[userid].sequence_of_fanaticisms_hate):
+                listFanatics.append(userid)
+        return listFanatics
+
+    def topic_posts(self,topic_id):
+        listUserPost = []
+        for userid in self.user:
+            posts = self.user[userid].class_topic_posts(topic_id)
+            if posts != []:
+                for i in posts:
+                    listUserPost.append(i)
+
+        finalList = sorted(listUserPost, key = lambda i: (len(i['comments']),i['userid']))
+        return finalList 
         
             
         
