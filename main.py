@@ -199,6 +199,7 @@ def readpost_io(fakebook,args):
             print('\n'.join("[{} {}] {}" \
                 .format(comment['userComment'],comment['positiveNegative'],comment['comment']) for comment in userpost['comments']))
     
+    
      
 def commentsbyuser_io(fakebook,args):
     userid = " ".join(args[0:])
