@@ -50,6 +50,7 @@ SAME_USER = "%s cannot be the same as %s!"
 ADMIRE = "%s must really admire %s!"
 NO_POSTS = "%s has no posts!"
 NO_FRIENDS = "%s has no friends!"
+POST_USER = "%s posts:"
 INVALID_HASHTAG = "Invalid hashtags list!"
 INADEQUATE_STANCE = "Inadequate stance!"
 NO_POST = "%s has no post %s!"
@@ -150,7 +151,8 @@ def userposts_io(fakebook,args):
         if posts == []:
             print(NO_POSTS % (userid))
         else:
-            print(userid + " posts:")
+            #print(userid + " posts:")
+            print(POST_USER % (userid))
             print('\n'.join("{}. [{}] {} [{} comments]".format(post['postid'],post['truthfulness'],post['message'],len(post['comments'])) for post in posts))
     
 def comment_io(fakebook,args):
